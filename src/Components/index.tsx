@@ -1,4 +1,5 @@
 export * from "./Nav"
 export * from "./Input"
 export * from "./LoginForm"
-export * from "./LoginButton"
+export * from "./Button"
+export * from "./RegisterForm"
