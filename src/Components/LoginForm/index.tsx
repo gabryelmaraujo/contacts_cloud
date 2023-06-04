@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
 
-import LoginButton from '../LoginButton';
+import Button from '../Button';
 import Input from '../Input';
 
 
@@ -58,7 +58,10 @@ const LoginForm = () =>{
                 }}
             />
 
-            <LoginButton onPress={handleSubmit(handleLogin)}/>
+            <Button 
+            onPress={handleSubmit(handleLogin)} 
+            text_button={'Entrar'}
+            />
         </View>
     )
 }

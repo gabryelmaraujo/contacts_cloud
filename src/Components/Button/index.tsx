@@ -1,6 +1,7 @@
 import { Button as ButtonNativeBase, IButtonProps, Text } from 'native-base'
 
-const LoginButton = ({...rest}: IButtonProps) => {
+
+const Button = ({text_button, ...rest}: IButtonProps | any) => {
     return(
         <ButtonNativeBase 
             w={'full'}
@@ -11,9 +12,9 @@ const LoginButton = ({...rest}: IButtonProps) => {
             }}
             {...rest}
         >
-            <Text className='text-white'>Entrar</Text>
+            <Text className='text-white'>{text_button}</Text>
         </ButtonNativeBase>
     )
 }
 
-export default LoginButton
+export default Button
