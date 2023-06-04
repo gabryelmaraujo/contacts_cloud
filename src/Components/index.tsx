@@ -1,5 +1,17 @@
-export * from "./Nav"
-export * from "./Input"
-export * from "./LoginForm"
-export * from "./Button"
-export * from "./RegisterForm"
+import RegisterForm from "./RegisterForm"
+import LoginForm from "./LoginForm"
+import Input from "./Input"
+import Button from "./Button"
+import UserContacts from "./UserContacts"
+import UserInfos from "./UserInfos"
+import DashboardHeader from "./DashboardHeader"
+
+export {
+    UserContacts,
+    UserInfos,
+    DashboardHeader,
+    RegisterForm,
+    LoginForm,
+    Input,
+    Button,
+}
