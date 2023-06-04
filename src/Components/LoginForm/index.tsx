@@ -1,3 +1,5 @@
+import React, { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 import { View } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -18,12 +20,16 @@ const loginSchema = yup.object({
 })
 
 const LoginForm = () =>{
+    const { loginUser } = useContext(UserContext)
+
     const { control, handleSubmit, formState: { errors } } = useForm<TLoginFormData>({
         resolver: yupResolver(loginSchema)
     });
 
     const handleLogin = (data: TLoginFormData) => {
         console.log(data)
+        loginUser(data)
+
     }
 
     return(
