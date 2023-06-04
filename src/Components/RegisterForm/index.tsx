@@ -1,3 +1,5 @@
+import React, { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 import { View } from 'react-native'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -23,12 +25,15 @@ const registerSchema = yup.object({
 })
 
 const RegisterForm = () => {
+    const { createUser } = useContext(UserContext)
+
     const { control, handleSubmit, formState: { errors } } = useForm<TRegisterFormData>({
         resolver: yupResolver(registerSchema)
     });
 
     const handleRegister = (data:TRegisterFormData) => {
         console.log(data)
+        createUser(data)
     }
 
     return(
