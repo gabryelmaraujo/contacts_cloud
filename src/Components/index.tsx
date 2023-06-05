@@ -5,6 +5,9 @@ import Button from "./Button"
 import UserContacts from "./UserContacts"
 import UserInfos from "./UserInfos"
 import DashboardHeader from "./DashboardHeader"
+import ContactCard from "./ContactCard"
+import ContactsList from "./ContactsList"
+
 
 export {
     UserContacts,
@@ -14,4 +17,6 @@ export {
     LoginForm,
     Input,
     Button,
+    ContactCard,
+    ContactsList,
 }

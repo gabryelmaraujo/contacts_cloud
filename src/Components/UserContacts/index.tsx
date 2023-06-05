@@ -1,15 +1,19 @@
 import { View, Box, Flex, Input, Text, Button, Row } from "native-base"
 import { MaterialIcons } from "@expo/vector-icons"
+import contactsArr from "../../data/data"
+import ContactCard from "../ContactCard"
+import { iContact } from "../../@types/contacts"
+import ContactsList from "../ContactsList"
 
 
 const UserContacts = () => {
+
     return(
-        <View borderWidth={2} marginTop={5} width={'full'} height={'2/4'}>
+        <View marginTop={5} width={'full'} height={'2/4'}>
             <Flex 
                 direction="column" 
                 alignItems={"center"}
                 justifyContent={"space-between"}
-                borderBottomWidth={2}
                 >
                 <Box 
                     flexDirection={'row'} 
@@ -28,6 +32,9 @@ const UserContacts = () => {
                     </Button>
                 </Box>
                 <Input width={'5/6'}/>
+            </Flex>
+            <Flex>
+                <ContactsList />
             </Flex>
         </View>
     )
