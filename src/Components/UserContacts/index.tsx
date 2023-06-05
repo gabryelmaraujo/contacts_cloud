@@ -1,6 +1,6 @@
 import { View, Box, Flex, Input, Text, Button, Row } from "native-base"
 import { MaterialIcons } from "@expo/vector-icons"
-import contactsArr from "../../data/data"
+import { contactsArr } from "../../data/data"
 import ContactCard from "../ContactCard"
 import { iContact } from "../../@types/contacts"
 import ContactsList from "../ContactsList"
@@ -31,7 +31,7 @@ const UserContacts = () => {
                         <MaterialIcons name="person-add" size={30}/>
                     </Button>
                 </Box>
-                <Input width={'5/6'}/>
+                <Input width={'5/6'} borderColor={"blueGray.500"} backgroundColor={"white"}/>
             </Flex>
             <Flex>
                 <ContactsList />

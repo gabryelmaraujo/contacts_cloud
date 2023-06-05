@@ -7,6 +7,8 @@ import UserInfos from "./UserInfos"
 import DashboardHeader from "./DashboardHeader"
 import ContactCard from "./ContactCard"
 import ContactsList from "./ContactsList"
+import EditUserForm from "./EditUserForm"
+
 
 
 export {
@@ -19,4 +21,6 @@ export {
     Button,
     ContactCard,
     ContactsList,
+    EditUserForm,
+    
 }

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
+import { useNavigation } from '@react-navigation/native'
 import { View } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -7,6 +8,8 @@ import * as yup from 'yup';
 
 import Button from '../Button';
 import Input from '../Input';
+import { iUser } from '../../@types/user';
+import { loggedUser } from '../../data/data';
 
 
 type TLoginFormData = {
@@ -21,6 +24,7 @@ const loginSchema = yup.object({
 
 const LoginForm = () =>{
     const { loginUser } = useContext(UserContext)
+    const { navigate } = useNavigation()
 
     const { control, handleSubmit, formState: { errors } } = useForm<TLoginFormData>({
         resolver: yupResolver(loginSchema)
@@ -28,7 +32,9 @@ const LoginForm = () =>{
 
     const handleLogin = (data: TLoginFormData) => {
         console.log(data)
-        loginUser(data)
+        const user: iUser = loggedUser
+        loginUser(loggedUser)
+        setTimeout(()=>{navigate("user_dashboard")}, 1000)
 
     }
 
@@ -67,6 +73,7 @@ const LoginForm = () =>{
             <Button 
             onPress={handleSubmit(handleLogin)} 
             text_button={'Entrar'}
+            navi
             />
         </View>
     )

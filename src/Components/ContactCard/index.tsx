@@ -4,16 +4,24 @@ import { iContact } from "../../@types/contacts"
 
 const ContactCard = ({id, name, email, telephone}: iContact) => {
     return(
-        <View w={'full'} h={"16"} borderWidth={2} borderColor={'black'} marginTop={2} flexDirection={"column"} paddingTop={2}>
-            <Flex direction="row" alignItems={"center"} justifyContent={"space-between"}>
-                <Flex direction="row" alignItems={"center"}>
-                    <MaterialIcons name="account-circle" size={45} color="black" />
-                    <Text marginLeft={1} fontSize={16} >{name}</Text>
+        <View w={'full'} h={"16"} borderWidth={2} borderRadius={"md"} borderColor={'blueGray.400'} marginTop={2}>
+            <Button 
+                w={"full"} 
+                h={"full"} 
+                flexDir={"row"} 
+                justifyItems={"flex-start"} 
+                backgroundColor={"gray.100"}
+                _pressed={{
+                    bgColor: "blueGray.200"
+                }}
+                >
+                <Flex direction="row" alignItems={"center"} h={"12"}>
+                    <Flex direction="row" alignItems={"center"} w={"full"} h={"full"}>
+                        <MaterialIcons name="account-circle" size={45} color="black" />
+                        <Text marginLeft={1} fontSize={"lg"} fontWeight={"semibold"} >{name}</Text>
+                    </Flex>
                 </Flex>
-                <Button backgroundColor={"gray.100"}>
-                    <MaterialIcons name="person-remove" size={24} color="black" />
-                </Button>
-            </Flex>
+            </Button>
         </View>
     )
 }
