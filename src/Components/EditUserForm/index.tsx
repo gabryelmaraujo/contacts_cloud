@@ -32,7 +32,7 @@ const EditUserForm = () => {
 
     const handleEditUser = (data:TEditUserFormData) => {
         console.log(data)
-        const userId: number|undefined = loggedUser?.id
+        const userId: number = loggedUser.id
         editUser(data, userId)
     }
 
