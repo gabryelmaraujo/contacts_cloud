@@ -1,7 +1,7 @@
 
 
 export interface iContact {
-    id?: number;
+    id: number;
     name: string;
     email: string;
     telephone: string;

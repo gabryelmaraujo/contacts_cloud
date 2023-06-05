@@ -7,13 +7,6 @@ const { Screen, Navigator } = createStackNavigator();
 const StackRoutes = () => {
     return(
         <Navigator>
-            <Screen 
-                name='user_dashboard'
-                component={UserDashboard}
-                options={{
-                    headerShown: false,
-                }}
-            />
             <Screen
                 name='login' 
                 component={Login}
@@ -21,6 +14,15 @@ const StackRoutes = () => {
                     headerShown: false,
                 }}
             />
+
+            <Screen 
+                name='user_dashboard'
+                component={UserDashboard}
+                options={{
+                    headerShown: false,
+                }}
+            />
+
             <Screen
                 name='register' 
                 component={Register}

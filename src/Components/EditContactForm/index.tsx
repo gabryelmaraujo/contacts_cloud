@@ -24,16 +24,16 @@ type TEditUserFormData = {
 }
 
 const EditContactForm = () => {
-    const { editUser, loggedUser } = useContext(UserContext)
+    const { editModal, editUser, loggedUser } = useContext(UserContext)
 
     const { control, handleSubmit, formState: { errors } } = useForm<TEditUserFormData>({
         resolver: yupResolver(editUserSchema)
     });
 
-    const handleEditUser = (data:TEditUserFormData) => {
+    const handleEditContact = (data:TEditUserFormData) => {
         console.log(data)
-        const userId: number|undefined = loggedUser?.id
-        editUser(data, userId)
+        const contactId: number = editModal.user_id
+        editUser(data, contactId)
     }
 
     return(
@@ -68,26 +68,11 @@ const EditContactForm = () => {
 
             <Controller 
                 control={control} 
-                name='password'
-                render={({field: {onChange}}) => {
-                    return(
-                        <Input 
-                            placeholder='Senha' 
-                            onChangeText={onChange}
-                            secureTextEntry={true}
-                            errorMessage={errors.password?.message}
-                        />
-                    )
-                }}
-            />
-
-            <Controller 
-                control={control} 
                 name='telephone'
                 render={({field: {onChange}}) => {
                     return(
                         <Input 
-                            placeholder='Digite seu telefone...' 
+                            placeholder='Digite o telefone...' 
                             onChangeText={onChange}
                             errorMessage={errors.telephone?.message}
                         />
@@ -96,7 +81,7 @@ const EditContactForm = () => {
             />
 
         <Button 
-            onPress={handleSubmit(handleEditUser)} 
+            onPress={handleSubmit(handleEditContact)} 
             text_button={'Confirmar'}
             />
         </View>

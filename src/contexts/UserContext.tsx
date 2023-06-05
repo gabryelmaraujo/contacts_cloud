@@ -1,16 +1,17 @@
 import React, { createContext, useState } from "react";
 import instance from "../services/api";
 import { iUser, iUserEdit } from "../@types/user";
+import { boolean, string } from "yup";
 
 interface IUserProviderValues{
     loginUser: (data: iUser) => void;
     createUser: (data: iUser) => void;
-    editUser: (data: iUserEdit, id:number|undefined) => void;
+    editUser: (data: iUserEdit, id:number) => void;
     signed: boolean;
-    editUserModal: boolean;
-    setEditUserModal: React.Dispatch<React.SetStateAction<boolean>>;
-    loggedUser: iUser | undefined;
-    setLoggedUser: React.Dispatch<React.SetStateAction<iUser | undefined>>;
+    editModal: IEditModal;
+    setEditModal: React.Dispatch<React.SetStateAction<IEditModal>>;
+    loggedUser: iUser;
+    setLoggedUser: React.Dispatch<React.SetStateAction<iUser>>;
 }
 
 export const UserContext = createContext({} as IUserProviderValues);
@@ -19,11 +20,18 @@ interface IUserProviderProps{
     children: React.ReactNode
 }
 
+interface IEditModal {
+    open: boolean;
+    type: string;
+    user_id: number;
+}
+
 export const UserProvider = ({children}: IUserProviderProps) => {
 
-    const [editUserModal, setEditUserModal] = useState(false);
-    const [userIdToEdit, setUserIdToEdit] = useState(0);
-    const [loggedUser, setLoggedUser ] = useState<iUser>()
+    const [editModal, setEditModal] = useState({
+        open: false
+    } as IEditModal);
+    const [loggedUser, setLoggedUser ] = useState({} as iUser)
 
     const createUser = async (data: iUser) => {
         try{
@@ -36,7 +44,7 @@ export const UserProvider = ({children}: IUserProviderProps) => {
         }
     }
 
-    const editUser = async (data: iUserEdit, id: number|undefined) => {
+    const editUser = async (data: iUserEdit, id: number) => {
         try{
             
             const response = await instance.patch(`users/${id}/`, data)
@@ -65,8 +73,8 @@ export const UserProvider = ({children}: IUserProviderProps) => {
             loginUser,
             createUser,
             editUser,
-            editUserModal,
-            setEditUserModal,
+            editModal,
+            setEditModal,
             loggedUser,
             setLoggedUser,
             }}>
