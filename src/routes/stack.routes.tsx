@@ -1,5 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { Login, Register } from '../screens';
+import { Login, Register, UserDashboard } from '../screens';
 
 
 const { Screen, Navigator } = createStackNavigator();
@@ -7,6 +7,13 @@ const { Screen, Navigator } = createStackNavigator();
 const StackRoutes = () => {
     return(
         <Navigator>
+            <Screen 
+                name='user_dashboard'
+                component={UserDashboard}
+                options={{
+                    headerShown: false,
+                }}
+            />
             <Screen
                 name='login' 
                 component={Login}
