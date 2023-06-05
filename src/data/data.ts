@@ -1,7 +1,15 @@
 import { iContact } from "../@types/contacts"
+import { iUser } from "../@types/user"
 
+export const loggedUser: iUser = {
+    id: 100,
+    name: "Gabryel Aras",
+    email: "aras@gmail.com",
+    password: "1234",
+    telephone: "123456789"
+}
 
-const contactsArr: Array<iContact> = [
+export const contactsArr: Array<iContact> = [
     {
         'id': 1,
         'name': 'Usuario 1',
@@ -39,5 +47,3 @@ const contactsArr: Array<iContact> = [
         'email': 'usuario6@mail.com'
     }
 ]
-
-export default contactsArr

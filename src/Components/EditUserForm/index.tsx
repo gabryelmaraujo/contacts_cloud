@@ -1,42 +1,39 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../../contexts/UserContext';
-import { View } from 'react-native'
 import { useForm, Controller } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup'
+import * as yup from "yup"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { View } from "native-base"
+import { useContext } from 'react'
+import { UserContext } from '../../contexts/UserContext'
+import Button from '../Button'
+import Input from '../Input'
+import { loggedUser } from '../../data/data'
 
-import Input from '../Input';
-import Button from '../Button';
 
-type TRegisterFormData = {
-    email: string;
-    password: string;
-    confirm_pass: string;
-    name: string;
-    telephone: string;
-}
-
-const registerSchema = yup.object({
-    email: yup.string().required("Informe o email.").email("Email inválido."),
-    password: yup.string().required("Informe a senha."),
-    confirm_pass: yup.string()
-    .oneOf([yup.ref('password')], 'As senhas estão diferentes.'),
-    name: yup.string().required('Informe seu nome.').min(4, 'O nome deve ter no mínimo 4 letras.'),
-    telephone: yup.string().required('Informe um telefone.')
+const editUserSchema = yup.object({
+    email: yup.string().email("Email inválido.").optional(),
+    password: yup.string().optional(),
+    name: yup.string().min(4, 'O nome deve ter no mínimo 4 letras.').optional(),
+    telephone: yup.string().optional()
 })
 
-const RegisterForm = () => {
-    const { createUser } = useContext(UserContext)
+type TEditUserFormData = {
+    email?: string;
+    password?: string;
+    name?: string;
+    telephone?: string;
+}
 
-    const { control, handleSubmit, formState: { errors } } = useForm<TRegisterFormData>({
-        resolver: yupResolver(registerSchema)
+const EditUserForm = () => {
+    const { editUser, loggedUser } = useContext(UserContext)
+
+    const { control, handleSubmit, formState: { errors } } = useForm<TEditUserFormData>({
+        resolver: yupResolver(editUserSchema)
     });
 
-    const handleRegister = (data:TRegisterFormData) => {
-        const { email, password, telephone, name } = data
-        const userData = { email, password, telephone, name }
-        console.log(userData)
-        createUser(userData)
+    const handleEditUser = (data:TEditUserFormData) => {
+        console.log(data)
+        const userId: number|undefined = loggedUser?.id
+        editUser(data, userId)
     }
 
     return(
@@ -85,21 +82,6 @@ const RegisterForm = () => {
             />
 
             <Controller 
-                control={control}
-                name='confirm_pass'
-                render={({field: {onChange}}) => {
-                    return(
-                        <Input 
-                            placeholder='Repita a sua senha' 
-                            onChangeText={onChange}
-                            secureTextEntry={true}
-                            errorMessage={errors.confirm_pass?.message}
-                        />
-                    )
-                }}
-            />
-
-            <Controller 
                 control={control} 
                 name='telephone'
                 render={({field: {onChange}}) => {
@@ -114,11 +96,11 @@ const RegisterForm = () => {
             />
 
         <Button 
-            onPress={handleSubmit(handleRegister)} 
-            text_button={'Cadastrar'}
+            onPress={handleSubmit(handleEditUser)} 
+            text_button={'Confirmar'}
             />
         </View>
     )
 }
 
-export default RegisterForm
+export default EditUserForm
