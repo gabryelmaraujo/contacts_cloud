@@ -2,10 +2,18 @@ import { Box, FlatList } from "native-base";
 import { contactsArr } from "../../data/data";
 import ContactCard from "../ContactCard";
 
-const ContactsList = () => {
+type TContactsList = {
+    search: string;
+}
+
+const ContactsList = ({ search }: TContactsList) => {
+
+   const filteredContacts = contactsArr.filter((contact) => contact.name.toLowerCase().includes(search))
+    
+
     return(
         <Box overflowY={"scroll"} height={"64"} marginTop={2}>
-            <FlatList data={contactsArr} renderItem={(contact) => {
+            <FlatList data={filteredContacts} renderItem={(contact) => {
                 const id = contact.item.id;
                 const name = contact.item.name;
                 const telephone = contact.item.telephone;
